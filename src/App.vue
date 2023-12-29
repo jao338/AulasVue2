@@ -1,15 +1,18 @@
 <template>
+  <headerComponent/>
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
+import headerComponent from './components/headerComponent,.vue'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    headerComponent
   },
   mounted() {
     document.title = 'Aulas Vue.js 3'
