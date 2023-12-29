@@ -10,6 +10,9 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  mounted() {
+    document.title = 'Aulas Vue.js 3'
   }
 }
 </script>
