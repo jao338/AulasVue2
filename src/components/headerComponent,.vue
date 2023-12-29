@@ -3,6 +3,7 @@
   <div v-for="(item, index) in todos" :key="item.id">
     <p>Index - {{ index }}</p>
     <p>Título - {{ item.title }}</p>
+    <img v-if="item.imgSrc" :src="item.imgSrc">
   </div>
   
 </template>
@@ -12,18 +13,21 @@ export default {
 
   data() {
     return {
+
       todos: [
         {
           "userId": 1,
           "id": 1,
           "title": "delectus aut autem",
-          "completed": false
+          "completed": false,
+          "imgSrc": "https://pbs.twimg.com/profile_images/1561105702541824000/lwOHrYLO_400x400.jpg",
         },
         {
           "userId": 1,
           "id": 2,
           "title": "quis ut nam facilis et officia qui",
-          "completed": false
+          "completed": false,
+          "imgSrc": "https://pbs.twimg.com/profile_images/1561105702541824000/lwOHrYLO_400x400.jpg",
         },
         {
           "userId": 1,
