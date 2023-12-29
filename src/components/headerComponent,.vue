@@ -1,16 +1,57 @@
 <template>
   
-  <div v-for="(item, index) in todos" :key="item.id">
+  <div>
+    
+    <div>
+      <span>Two-way databinding com input de texto</span><br><br>
+      <label for="name">Nome: </label> <br>
+      <input type="text" name="name" v-model="name">
+      <p>{{ name }}</p>
+    </div>
 
-    <h1 :class="{ 'title': classVar }">Title</h1>
+    <br>
 
-    <p :class="pClass">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor eum, dicta illo officia eaque aperiam autem perspiciatis porro dignissimos impedit optio! Debitis vero distinctio id voluptatibus sit doloribus, pariatur sed?</p>
+    <div>
+      <span>Two-way databinding com select</span><br><br>
+      <select v-model="sports">
+        <option value="">Escolha</option>
+        <option value="Futebol">Futebol</option>
+        <option value="Skate">Skate</option>
+        <option value="Tenis">Tenis</option>
+      </select>
 
-    <p style="color: green">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et adipisci sit dignissimos beatae earum possimus, ut minus perspiciatis id.</p>
+      <p>{{ sports }}</p>
+    </div>
+  
+    <br>
 
-    <p>Index - {{ index }}</p>
-    <p>Título - {{ item.title }}</p>
-    <img v-if="item.imgSrc" :src="item.imgSrc">
+    <div>
+      <span>Two-way databinding com input de radio</span><br><br>
+      <label>Newsletter</label><br>
+      <input type="radio" value="Sim" v-model="newsletter">Sim
+      <input type="radio" value="Não" v-model="newsletter">Não
+      <p>{{ newsletter }}</p>
+    </div>
+
+    <br>
+
+    <div>
+      <span>Two-way databinding com input de checkbox</span><br><br>
+      <label>Contrato</label><br>
+      <input type="checkbox" v-model="contract">Aceito os termos
+      <p>{{ contract }}</p>
+    </div>
+  
+    <br>
+
+    <div>
+      <span>Two-way databinding com mais de um input de checkbox</span><br><br>
+      <label>Cores</label><br>
+      <input type="checkbox" v-model="colors" value="Amarelo">Amarelo
+      <input type="checkbox" v-model="colors" value="Azul">Azul
+      <p>{{ colors }}</p>
+    </div>
+
   </div>
   
 </template>
@@ -20,46 +61,11 @@ export default {
 
   data() {
     return {
-
-      classVar: true,
-
-      pClass: { 'title': true },
-
-      todos: [
-        {
-          "userId": 1,
-          "id": 1,
-          "title": "delectus aut autem",
-          "completed": false,
-          "imgSrc": "https://pbs.twimg.com/profile_images/1561105702541824000/lwOHrYLO_400x400.jpg",
-        },
-        {
-          "userId": 1,
-          "id": 2,
-          "title": "quis ut nam facilis et officia qui",
-          "completed": false,
-          "imgSrc": "https://pbs.twimg.com/profile_images/1561105702541824000/lwOHrYLO_400x400.jpg",
-        },
-        {
-          "userId": 1,
-          "id": 3,
-          "title": "fugiat veniam minus",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 4,
-          "title": "et porro tempora",
-          "completed": true
-        },
-        {
-          "userId": 1,
-          "id": 5,
-          "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-          "completed": false
-        }
-      ],
-
+      name: "João Henrique",
+      sports: '',
+      newsletter: '',
+      contract: false,
+      colors: [],
     }
   }
 
@@ -67,13 +73,5 @@ export default {
 </script>
 
 <style>
-    header{
-        color: green;
-    }
-
-  .title{
-    font-size: 24px;
-    color: blue;
-  }
 
 </style>
