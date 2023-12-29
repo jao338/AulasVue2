@@ -1,6 +1,13 @@
 <template>
   
   <div v-for="(item, index) in todos" :key="item.id">
+
+    <h1 :class="{ 'title': classVar }">Title</h1>
+
+    <p :class="pClass">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor eum, dicta illo officia eaque aperiam autem perspiciatis porro dignissimos impedit optio! Debitis vero distinctio id voluptatibus sit doloribus, pariatur sed?</p>
+
+    <p style="color: green">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et adipisci sit dignissimos beatae earum possimus, ut minus perspiciatis id.</p>
+
     <p>Index - {{ index }}</p>
     <p>Título - {{ item.title }}</p>
     <img v-if="item.imgSrc" :src="item.imgSrc">
@@ -13,6 +20,10 @@ export default {
 
   data() {
     return {
+
+      classVar: true,
+
+      pClass: { 'title': true },
 
       todos: [
         {
@@ -47,7 +58,8 @@ export default {
           "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
           "completed": false
         }
-      ]
+      ],
+
     }
   }
 
@@ -58,4 +70,10 @@ export default {
     header{
         color: green;
     }
+
+  .title{
+    font-size: 24px;
+    color: blue;
+  }
+
 </style>
