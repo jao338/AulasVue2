@@ -1,34 +1,40 @@
 <template>
   
   <div>
-    
-    <div style="margin-bottom: 16px">
-      <div>
-        <span>Primeira forma de utilizar eventos: </span>
-        <button v-on:click="onClick">Enviar</button>
-      </div>
 
-      <div>
-        <span>Segunda forma de utilizar eventos: </span>
-        <button @click="onClick">Enviar</button>
-      </div>
-      
+    <div class="mB-16">
+      <span>Sem computed properties</span>
+      <div>{{ user.firstName }} {{ user.lastName }}</div>
     </div>
 
-    <div class="box" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
-      <span>Eventos de mouse</span>
+    <div class="mB-16">
+      <span>Com computed properties</span>
+      <div>{{ fullName }}</div>
     </div>
-
-    <form action="https://google.com" @submit.prevent="onSubmit">
-      <span>Enviando um formulário: </span>
-      <button type="submit">Enviar</button>
-    </form>
 
     <div>
-      <label>Ao pressionar uma tecla: </label>
-      <input type="text" @keypress="onKeyPress">
+      <span>Listando itens de array e filtrando usando computed properties</span><br><br>
+      
+      <span>Todos</span>
+      <div v-for="item in todos" :key="item.id">
+        <input type="checkbox" v-model="item.completed"><span>{{ item.title }}</span>
+      </div><br>
+
+      <span>Incompletos</span>
+      <div v-for="item in uncompletedTodos" :key="item.id">
+        <div>
+          <span>Título -{{ item.title }}</span> Status - <span>{{ item.completed }}</span>
+        </div>
+      </div><br>
+
+      <span>Completos</span>
+      <div v-for="item in completedTodos" :key="item.id">
+        <div>
+          <span>Título -{{ item.title }}</span> Status - <span>{{ item.completed }}</span>
+        </div>
+      </div><br>
+
     </div>
-    
 
   </div>
   
@@ -39,29 +45,58 @@ export default {
 
   data() {
     return {
+      user: {
+        firstName: "João",
+        lastName: "Henrique",
+      },
+
+      todos: [
+        {
+          "userId": 1,
+          "id": 1,
+          "title": "delectus aut autem",
+          "completed": false
+        },
+        {
+          "userId": 1,
+          "id": 2,
+          "title": "quis ut nam facilis et officia qui",
+          "completed": false
+        },
+        {
+          "userId": 1,
+          "id": 3,
+          "title": "fugiat veniam minus",
+          "completed": false
+        },
+        {
+          "userId": 1,
+          "id": 4,
+          "title": "et porro tempora",
+          "completed": true
+        },
+        {
+          "userId": 1,
+          "id": 5,
+          "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
+          "completed": false
+        }
+      ]
       
     }
   },
 
-  methods: {
-    onClick() {
-      console.log("click");
+  computed: {
+    fullName(){
+      return `${this.user.firstName} ${this.user.lastName}`
     },
 
-    onMouseEnter() {
-      console.log("Mouse entrou");
+    uncompletedTodos() {
+      return this.todos.filter(todo => !todo.completed)
     },
 
-    onMouseLeave() {
-      console.log("Mouse saiu");
-    },
-
-    onsubmit(){
-      console.log("Formulário enviado")
-    },
-
-    onKeyPress($event){
-      console.log("A tecla ", $event.code, " foi pressionada")
+    completedTodos() {
+      return this.todos.filter(todo => todo.completed)
     }
   }
 
@@ -69,17 +104,7 @@ export default {
 </script>
 
 <style>
-  .box{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 200px;
-    border: 1px solid black;
-    margin-bottom: 16px;
-  }
-
-  form{
+  .mB-16{
     margin-bottom: 16px;
   }
 </style>
