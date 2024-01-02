@@ -1,54 +1,41 @@
 <template>
-  
-<div id="teste">
-  <button v-if="!showAlert" @click="openAlert">Abrir novamente</button>
-
-  <baseAlertComponent :variant="variant" @close="onClose" v-if="showAlert">
-    {{ text }}
-  </baseAlertComponent>
-</div>
-
+  <nav>
+    <routerLink to="/">Home</routerLink> |
+    <routerLink :to="rotaDinamica">Services</routerLink> |
+    <routerLink to="/about">About</routerLink>
+  </nav>
+  <router-view/>
 </template>
 
 <script>
-
-import baseAlertComponent from './components/baseAlertComponent.vue'
-
-export default {
-  name: 'App',
-
+export default{
   data(){
     return {
-
-      variant: "success",
-      text: "Seu formulário foi enviado com sucesso",
-      showAlert: true
-
-    }
-  },
-
-  components: {
-    baseAlertComponent
-  },
-
-  mounted() {
-    document.title = "Aulas Vue.js 3"
-  },
-
-  methods: {
-    onClose(){
-      this.showAlert = !this.showAlert
-    },
-
-    openAlert(){
-      this.showAlert = !this.showAlert
+      rotaDinamica: {name: 'services'}
     }
   }
-
-  
 }
 </script>
 
 <style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
 </style>
