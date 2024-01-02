@@ -2,9 +2,9 @@
 
   <div :class="baseClass">
 
-    <span>Valor padrão da prop "test" - {{ test }}</span><br><br>
-
     <slot/>
+
+    <button @click="onClick">X</button>
 
   </div>
 
@@ -21,11 +21,6 @@ export default {
             default: ''
         },
 
-        test: {
-            type: String,
-            default: 'test'
-        }
-
     },
     
     // Caso o valor de "this.variant" for igual a "alert-" concatenado com o valor da prop, o array recebe a classe, caso contarário não recebe nada
@@ -40,12 +35,20 @@ export default {
         }
     },
 
+    methods: {
+        onClick(){
+            this.$emit('close');
+        }
+    }
+
 }
 </script>
 
 <style>
 
     .alert{
+        display: flex;
+        justify-content: space-between;
         text-align: center;
         width: 35%;
         margin-left: auto;
@@ -65,6 +68,14 @@ export default {
     .alert-danger{
         color: #fff;
         background-color: red;
+    }
+
+    button{
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        cursor: pointer;
     }
 
 </style>

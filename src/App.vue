@@ -1,7 +1,9 @@
 <template>
   
-<div>
-  <baseAlertComponent :variant="variant">
+<div id="teste">
+  <button v-if="!showAlert" @click="openAlert">Abrir novamente</button>
+
+  <baseAlertComponent :variant="variant" @close="onClose" v-if="showAlert">
     {{ text }}
   </baseAlertComponent>
 </div>
@@ -20,6 +22,7 @@ export default {
 
       variant: "success",
       text: "Seu formulário foi enviado com sucesso",
+      showAlert: true
 
     }
   },
@@ -31,6 +34,16 @@ export default {
   mounted() {
     document.title = "Aulas Vue.js 3"
   },
+
+  methods: {
+    onClose(){
+      this.showAlert = !this.showAlert
+    },
+
+    openAlert(){
+      this.showAlert = !this.showAlert
+    }
+  }
 
   
 }
