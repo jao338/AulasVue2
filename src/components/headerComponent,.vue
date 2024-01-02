@@ -1,42 +1,31 @@
-<template>
-  
-  <div>
+<template>  
+<div>
 
-    <div class="mB-16">
-      <span>Sem computed properties</span>
-      <div>{{ user.firstName }} {{ user.lastName }}</div>
-    </div>
+  <label>Escreva um nome: </label><br><br>
+  <input type="text" v-model="name"><br><br>
+  <span>{{ name }}</span>
 
-    <div class="mB-16">
-      <span>Com computed properties</span>
-      <div>{{ fullName }}</div>
-    </div>
+  <br><br><br>
 
-    <div>
-      <span>Listando itens de array e filtrando usando computed properties</span><br><br>
-      
-      <span>Todos</span>
-      <div v-for="item in todos" :key="item.id">
-        <input type="checkbox" v-model="item.completed"><span>{{ item.title }}</span>
-      </div><br>
+  <label>Escreva o primeiro nome: </label><br><br>
+  <input type="text" v-model="user.firstName"><br><br>
+  <label>Escreva o último nome: </label><br><br>
+  <input type="text" v-model="user.lastName"><br><br>
+  <span>{{ user.firstName }} {{ user.lastName }}</span>
 
-      <span>Incompletos</span>
-      <div v-for="item in uncompletedTodos" :key="item.id">
-        <div>
-          <span>Título -{{ item.title }}</span> Status - <span>{{ item.completed }}</span>
-        </div>
-      </div><br>
+  <br><br><br>
 
-      <span>Completos</span>
-      <div v-for="item in completedTodos" :key="item.id">
-        <div>
-          <span>Título -{{ item.title }}</span> Status - <span>{{ item.completed }}</span>
-        </div>
-      </div><br>
+  <div>Escolha um valor: </div><br>
+  <select v-model="pageCount">
 
-    </div>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
 
-  </div>
+  </select><br><br>
+  <span>{{ pageCount }}</span>
+
+</div>
   
 </template>
 
@@ -45,58 +34,47 @@ export default {
 
   data() {
     return {
+      name: "",
+      pageCount: 5,
       user: {
-        firstName: "João",
-        lastName: "Henrique",
-      },
-
-      todos: [
-        {
-          "userId": 1,
-          "id": 1,
-          "title": "delectus aut autem",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 2,
-          "title": "quis ut nam facilis et officia qui",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 3,
-          "title": "fugiat veniam minus",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 4,
-          "title": "et porro tempora",
-          "completed": true
-        },
-        {
-          "userId": 1,
-          "id": 5,
-          "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-          "completed": false
-        }
-      ]
-      
+        firstName: "",
+        lastName: ""
+      }
     }
   },
 
   computed: {
-    fullName(){
-      return `${this.user.firstName} ${this.user.lastName}`
+  },  
+
+  //  O objeto "watch" possui uma coletânea de itens, sendo que cada item é uma variável definida em "data()" e sempre com o mesmo nome. Toda vez que uma variável que está dentro de "watch" é alterada, uma rotina é correspondente é executada.
+
+  //  Ao observar um objeto é necessário atribuir uma sintaxe diferente, ao invés ds declaração de método, é declarado um objeto contendo dois itens. Um deles é o "handler" que é onde fica a rotina de comandos e o outro é "deep: true", que significa que sempre que um item do objeto que está sendo observado se alterar, a rotina de comandos deve ser executada
+  watch: {
+    name(){
+      this.saveUserName()
     },
 
-    uncompletedTodos() {
-      return this.todos.filter(todo => !todo.completed)
+    pageCount(){
+      this.changePageCount()
     },
 
-    completedTodos() {
-      return this.todos.filter(todo => todo.completed)
+    user: {
+      handler() {
+        console.log("User alterado")
+      },
+
+      deep: true
+
+    }
+  },
+
+  methods: {
+    saveUserName(){
+      console.log(this.name);
+    },
+
+    changePageCount(){
+      console.log(this.pageCount);
     }
   }
 
@@ -104,7 +82,5 @@ export default {
 </script>
 
 <style>
-  .mB-16{
-    margin-bottom: 16px;
-  }
+  
 </style>
