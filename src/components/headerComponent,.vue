@@ -1,10 +1,17 @@
 <template>  
 
-<div id="app">
+<div id="headerComponent">
 
-  <h1>Header</h1>
+  <!-- Um slot é um pedaço de um componente. Caso ele possua um atributo "name" ele poderá assim que utlizado no elemento pai possuir um conteúdo personalizado -->
+  <h1 v-if="$slots.title">
+    <slot name="title"/>
+  </h1>
 
-  <span>{{ name }}</span>
+  <h1>
+    <slot name="description"/>
+  </h1>
+
+  <slot/>
 
 </div>
   
@@ -13,31 +20,8 @@
 <script>
 export default {
 
-  data() {
-    return {
-      name: 'AAAAAAAAA',
-    }
-  },
-
-  methods: {
-    
-  },
-
-  watch: {
-
-  },
-
-  computed: {
-
-  },
-
-  // "this.$el" retorna o elemento raiz do componente, no caso a div de id "app"
-  beforeUnmount() {
-    console.log("beforeUnmount -", this.name, ", DOM -", this.$el)
-  },
-
-  unmounted(){
-    console.log("unmounted -", this.name, ", DOM -", this.$el)
+  mounted(){
+    console.log(this.$slots)
   }
 
 }
