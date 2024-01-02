@@ -1,34 +1,20 @@
 <template>
   
 <div>
-
-  <headerComponent>
-
-    <!-- Tudo que estiver dentro de um template com "v-slot:name_slot" será colocado dentro do slot correspondente no elemento filho -->
-    <template v-slot:title>
-      Title
-    </template>
-
-    <template v-slot:description>
-      Description
-    </template>
-
-    content
-
-  </headerComponent>
-
+  <baseCardComponent/>
+  <div class="baseCardComponent">Teste</div>
 </div>
 
 </template>
 
 <script>
 
-import headerComponent from './components/headerComponent,.vue'
+import baseCardComponent from './components/baseCardComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    headerComponent
+    baseCardComponent
   },
 
   mounted() {
