@@ -2,6 +2,7 @@
   <nav>
     <routerLink to="/">Home</routerLink> |
     <routerLink :to="rotaDinamica">Services</routerLink> |
+    <routerLink to="/users/1">Users</routerLink> |
     <routerLink to="/about">About</routerLink>
   </nav>
   <router-view/>
@@ -13,6 +14,10 @@ export default{
     return {
       rotaDinamica: {name: 'services'}
     }
+  },
+
+  mounted(){
+    document.title = "Aulas Vue.js 3"
   }
 }
 </script>
