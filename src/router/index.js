@@ -8,12 +8,6 @@ const routes = [
     component: HomeView
   },
 
-  {
-    path: '/users/:id',
-    name: 'users-edit',
-
-    component: () => import("../views/UserEditView.vue")
-  },
 ]
 
 const router = createRouter({

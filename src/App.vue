@@ -1,23 +1,32 @@
 <template>
-  <nav>
-    <routerLink :to="$store.state.rotaDinamica">Home</routerLink> |
-    <routerLink to="/users/1">Users</routerLink>
-  </nav>
-  <router-view/><br>
+  
+  <div>
+    <h1>Informações do usuário</h1><br>
 
-  <span>{{ $store.state.user.name }}</span><br>
-  <span>{{ $store.state.user.email }}</span><br>
-  <span>{{ $store.state.user.number }}</span><br><br>
+    <span>{{ $store.state.user.name }}</span><br>
+    <span>{{ $store.state.user.email }}</span><br>
+    <span>{{ $store.state.user.number }}</span><br>
 
-  <button @click="updateUser">Atualizar</button>
+    <button @click="updateUser">Atualizar perfil</button>
+
+    <productsComponent/>
+
+  </div>
 
 </template>
 
 <script>
+
+import productsComponent from "./components/Products/productsComponent.vue";
+
 export default{
 
   mounted(){
     document.title = "Aulas Vue.js 3"
+  },
+
+  components: {
+    productsComponent,
   },
 
   methods: {
@@ -63,5 +72,7 @@ button{
     padding-right: 8px;
     padding-top: 4px;
     padding-bottom: 4px;
+    margin-top: 32px;
+    margin-right: 8px;
   }
 </style>
