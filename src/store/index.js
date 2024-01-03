@@ -32,11 +32,16 @@ export default createStore({
 
     cart: [],
 
-    showButtonRemove: false,
-
   },
 
   getters: {
+
+    total(state){
+
+      return state.cart.reduce((total, item) => total += item.price, 0)
+
+    }
+
   },
 
   mutations: {

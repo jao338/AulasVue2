@@ -6,6 +6,8 @@
     <button @click="addProduct">Adicionar</button>
     <button @click="removeProduct"  v-if="showRemove">Remover</button>
     
+    <br><br>
+
   </div>
 
 </template>
@@ -27,7 +29,10 @@ export default {
     addProduct(){
       this.$store.commit('addProduct', this.product)
 
-      this.showRemove = !this.showRemove;
+      if(!this.showRemove){
+        this.showRemove = !this.showRemove;
+      }
+
     },
 
     removeProduct(){
