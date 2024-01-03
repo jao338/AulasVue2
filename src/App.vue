@@ -38,7 +38,11 @@ export default{
       number: 40028922
     }
 
-    this.$store.commit('storeUser', newUser)
+    // this.$store.commit('storeUser', newUser)
+
+    this.$store.dispatch('storeUser', newUser).then(() => {
+      console.log("Terminou com sucesso")
+    })
 
     }
   },
