@@ -12,12 +12,21 @@ export default createStore({
     
     rotaDinamica: {name: 'home'},
   },
+
   getters: {
   },
+
   mutations: {
+    storeUser(state, data){
+
+      state.user = data;
+
+    }
   },
+
   actions: {
   },
+  
   modules: {
   }
 })

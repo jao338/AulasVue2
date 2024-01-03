@@ -3,9 +3,13 @@
     <routerLink :to="$store.state.rotaDinamica">Home</routerLink> |
     <routerLink to="/users/1">Users</routerLink>
   </nav>
-  <router-view/>
+  <router-view/><br>
 
-  <span>Objeto de "state" - {{ this.$store.state.user.name }}</span>
+  <span>{{ $store.state.user.name }}</span><br>
+  <span>{{ $store.state.user.email }}</span><br>
+  <span>{{ $store.state.user.number }}</span><br><br>
+
+  <button @click="updateUser">Atualizar</button>
 
 </template>
 
@@ -14,7 +18,21 @@ export default{
 
   mounted(){
     document.title = "Aulas Vue.js 3"
-  }
+  },
+
+  methods: {
+    updateUser(){
+
+      const newUser = {
+      name: "Manoel Gomes",
+      email: "manoel1897@gmail.com",
+      number: 40028922
+    }
+
+    this.$store.commit('storeUser', newUser)
+
+    }
+  },
 }
 </script>
 
@@ -39,4 +57,11 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+button{
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
 </style>
